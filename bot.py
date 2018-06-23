@@ -30,6 +30,7 @@ async def add(left : int, right : int):
 
 @bot.command()
 async def status():
+    """Displays gpu temperature"""
     import subprocess
     bashCommand = "/opt/vc/bin/vcgencmd measure_temp"
     output = subprocess.check_output(['bash','-c', bashCommand])
