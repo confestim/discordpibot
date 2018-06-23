@@ -30,9 +30,10 @@ async def add(left : int, right : int):
 
 @bot.command()
 async def status():
-    """Displays gpu temperature"""
+    """Show some system info"""
     import subprocess
-    bashCommand = "/opt/vc/bin/vcgencmd measure_temp"
+    bashCommand = "free | grep Mem | awk '{printf(\"...\\nFree memory: %.1f%%\\n\", $4/$2*100.0 ) }' && vcgencmd measure_temp | sed 's/temp=/Temperature:\ /g' && df -h | grep root | awk '{printf(\"Free disk space: %s\\n\", $4 ) }'"
+#    bashCommand = """free |  grep Mem && vcgencmd measure_temp | sed 's/temp=/Temperature:\ /g' """
     output = subprocess.check_output(['bash','-c', bashCommand])
     await bot.say(output.decode("utf8"))
 
