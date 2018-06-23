@@ -1,2 +1,2 @@
 
-TOKEN = 'inser-your-bot-key-here'
+TOKEN = 'insert-your-bot-key-here'
