@@ -16,6 +16,16 @@ async def on_ready():
 
 
 @bot.command()
+async def installpre():
+    """Installs the prerequisites needed for this bot to run"""
+    import subprocess
+    await bot.say("Installing prerequisites")
+    bashCommand = "sudo apt-get install alsa-utils;sudo apt-get install fswebcam"
+    output = subprocess.check_output(['bash','-c', bashCommand])
+    await bot.say("Install Completed")
+
+
+@bot.command()
 async def yoot():
      await bot.say("yeet")
 
@@ -40,13 +50,25 @@ async def status():
 
 @bot.command()
 async def picture():
-	"""Take a picture through rasbpi's camera"""
-	import time
-	import subprocess
-	bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/YOUR/PATH/HERE"
-	output = subprocess.check_output(['bash','-c', bashCommand])
-	time.sleep(1.5)
-	await bot.upload("/home/pi/YOUR/PATH/HERE")
+    """Take a picture through rasbpi's camera"""
+    import time
+    import subprocess
+    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/YOUR/PATH/HERE"
+    output = subprocess.check_output(['bash','-c', bashCommand])
+    time.sleep(1.5)
+    await bot.upload("/home/pi/YOUR/PATH/HERE")
+
+
+@bot.command()
+async def audio():
+    """records 5 seconds worth of audio from the pi's mic"""
+    import time
+    import subprocess
+    await bot.say("Recording...")
+    bashCommand="arecord -f cd -D plughw:1,0 -d 5 /home/pi/YOURPATH/HERE/play.wav"
+    output = subprocess.check_output(['bash','-c', bashCommand])
+    time.sleep(1)
+    await bot.upload("/home/pi/YOURPATH/HERE/play.wav")
 
 
 bot.run(TOKEN)
