@@ -43,10 +43,10 @@ async def picture():
 	"""Take a picture through rasbpi's camera"""
 	import time
 	import subprocess
-	bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/Projects/discordbot/pic.jpg"
+	bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/YOUR/PATH/HERE"
 	output = subprocess.check_output(['bash','-c', bashCommand])
 	time.sleep(1.5)
-	await bot.upload("/home/pi/Projects/discordbot/pic.jpg")
+	await bot.upload("/home/pi/YOUR/PATH/HERE")
 
 
 bot.run(TOKEN)
