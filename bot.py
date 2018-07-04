@@ -16,7 +16,7 @@ async def on_ready():
 
 
 @bot.command()
-async def hello():
+async def yoot():
      await bot.say("yeet")
 
 
@@ -38,5 +38,16 @@ async def status():
     await bot.say(output.decode("utf8"))
 
 
+@bot.command()
+async def picture():
+	"""Take a picture through rasbpi's camera"""
+	import time
+	import subprocess
+	bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/Projects/discordbot/pic.jpg"
+	output = subprocess.check_output(['bash','-c', bashCommand])
+	time.sleep(1.5)
+	await bot.upload("/home/pi/Projects/discordbot/pic.jpg")
+
 
 bot.run(TOKEN)
+
