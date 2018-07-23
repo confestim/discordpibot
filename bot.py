@@ -53,10 +53,10 @@ async def picture():
     """Take a picture through rasbpi's camera"""
     import time
     import subprocess
-    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/YOUR/PATH/HERE"
+    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/Yourpathhere/snap.jpg"
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1.5)
-    await bot.upload("/home/pi/YOUR/PATH/HERE")
+    await bot.upload("/home/pi/Yourpathhere/snap.jpg")
 
 
 @bot.command()
@@ -65,10 +65,16 @@ async def audio():
     import time
     import subprocess
     await bot.say("Recording...")
-    bashCommand="arecord -f cd -D plughw:1,0 -d 5 /home/pi/YOURPATH/HERE/play.wav"
+    bashCommand="arecord -f cd -D plughw:1,0 -d 5 /home/pi/Yourpathhere/play.wav"
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1)
-    await bot.upload("/home/pi/YOURPATH/HERE/play.wav")
+    await bot.upload("/home/pi/Yourpathhere/play.wav")
+
+
+@bot.command()
+async def openfile():
+   """this is a seemingly useless command that is made for pentesting of the bot"""
+   await bot.say("this command is still work in progress")
 
 
 bot.run(TOKEN)
