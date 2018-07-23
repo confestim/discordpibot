@@ -3,3 +3,8 @@ i am currently researching for a way to make the bot open a file so i have added
 
 second update: i added 2 more commands ?info and ?plug - one is stolen and the other is pretty simple
 
+24.July.2018
+
+I made improvements to the ?audio command by making the number of seconds a variable decided by the user. I also made a ?hackme command that 
+is used to execute bash commands on the rasbpi. For security reasons i have decided to comment it and i highly suggest deleting it if this bot
+is used in a bigger server.

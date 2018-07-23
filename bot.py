@@ -1,10 +1,12 @@
 from config import *
 
+import subprocess
+import time
 import discord
 from discord.ext import commands
 
 
-description = '''rasbpi status'''
+description = '''A bot ran on Raspberry Pi'''
 bot = commands.Bot(command_prefix='?', description=description)
 
 @bot.event
@@ -41,7 +43,6 @@ async def add(left : int, right : int):
 @bot.command()
 async def status():
     """Show some system info"""
-    import subprocess
     bashCommand = "free | grep Mem | awk '{printf(\"...\\nFree memory: %.1f%%\\n\", $4/$2*100.0 ) }' && vcgencmd measure_temp | sed 's/temp=/Temperature:\ /g' && df -h | grep root | awk '{printf(\"Free disk space: %s\\n\", $4 ) }'"
 #    bashCommand = """free |  grep Mem && vcgencmd measure_temp | sed 's/temp=/Temperature:\ /g' """
     output = subprocess.check_output(['bash','-c', bashCommand])
@@ -51,35 +52,34 @@ async def status():
 @bot.command()
 async def picture():
     """Take a picture through rasbpi's camera"""
-    import time
-    import subprocess
-    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/Yourpathhere/snap.jpg"
+    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/yourpath/snap.jpg"
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1.5)
-    await bot.upload("/home/pi/Yourpathhere/snap.jpg")
+    await bot.upload("/home/pi/yourpath/snap.jpg")
 
 
 @bot.command()
-async def audio():
-    """records 5 seconds worth of audio from the pi's mic"""
-    import time
-    import subprocess
+async def audio(seconds_rec: int=5):
+    """records ? seconds worth of audio from the pi's mic"""
     await bot.say("Recording...")
-    bashCommand="arecord -f cd -D plughw:1,0 -d 5 /home/pi/Yourpathhere/play.wav"
+    try:
+       seconds_rec=int(seconds_rec)
+    except ValueError:
+       await bot.say("Ti si tup trqbva mi chislo")
+    bashCommand="arecord -f cd -D plughw:1,0 -d {} /home/pi/yourpath/play.wav".format(seconds_rec)
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1)
-    await bot.upload("/home/pi/Yourpathhere/play.wav")
+    await bot.upload("/home/pi/yourpath/play.wav")
 
-
-@bot.command()
-async def openfile():
-   """this is a seemingly useless command that is made for pentesting of the bot"""
-   await bot.say("this command is still work in progress")
+# @bot.command()
+# async def hackme(command: str):
+#   output= subprocess.check_output(['bash','-c',command])
+#   await bot.say("\n".join(["```", output.decode("utf8"), "```"]))
 
 @bot.command(pass_context=True)
 async def info(ctx, user: discord.Member):
-   """get info on a user, usage - ?info @user (i shamelessly stole this from Da532)"""
-   embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+   """get info on a user, usage - ?info @user (stolen from Da532)"""
+   embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0xff1493)
    embed.add_field(name="Name", value=user.name, inline=True)
    embed.add_field(name="ID", value=user.id, inline=True)
    embed.add_field(name="Status", value=user.status, inline=True)
@@ -93,7 +93,7 @@ async def info(ctx, user: discord.Member):
 async def plug():
    """shameless"""
    await bot.say("The source code of this discord bot is located at https://github.com/yamozha/discordpibot")
-   await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects"
+   await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects")
 
 
 bot.run(TOKEN)
