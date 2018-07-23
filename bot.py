@@ -88,5 +88,13 @@ async def info(ctx, user: discord.Member):
    embed.set_thumbnail(url=user.avatar_url)
    await bot.say(embed=embed)
 
+
+@bot.command()
+async def plug():
+   """shameless"""
+   await bot.say("The source code of this discord bot is located at https://github.com/yamozha/discordpibot")
+   await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects"
+
+
 bot.run(TOKEN)
 
