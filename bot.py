@@ -76,6 +76,17 @@ async def openfile():
    """this is a seemingly useless command that is made for pentesting of the bot"""
    await bot.say("this command is still work in progress")
 
+@bot.command(pass_context=True)
+async def info(ctx, user: discord.Member):
+   """get info on a user, usage - ?info @user (i shamelessly stole this from Da532)"""
+   embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
+   embed.add_field(name="Name", value=user.name, inline=True)
+   embed.add_field(name="ID", value=user.id, inline=True)
+   embed.add_field(name="Status", value=user.status, inline=True)
+   embed.add_field(name="Highest role", value=user.top_role)
+   embed.add_field(name="Joined", value=user.joined_at)
+   embed.set_thumbnail(url=user.avatar_url)
+   await bot.say(embed=embed)
 
 bot.run(TOKEN)
 
