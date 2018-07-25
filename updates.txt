@@ -8,3 +8,7 @@ second update: i added 2 more commands ?info and ?plug - one is stolen and the o
 I made improvements to the ?audio command by making the number of seconds a variable decided by the user. I also made a ?hackme command that 
 is used to execute bash commands on the rasbpi. For security reasons i have decided to comment it and i highly suggest deleting it if this bot
 is used in a bigger server.
+
+25.July.2018
+added a useless ?echo command it just repeats a thing you say (i added it to pentest it - it didn't work. Seems like discord are doing their best to protect our bot machines lmao) 
+also i found im extremely dumb and while doing the ?audio and ?picture commands i added unnecesarry file paths. 

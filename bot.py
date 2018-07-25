@@ -52,24 +52,24 @@ async def status():
 @bot.command()
 async def picture():
     """Take a picture through rasbpi's camera"""
-    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save /home/pi/yourpath/snap.jpg"
+    bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save ./snap.jpg"
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1.5)
-    await bot.upload("/home/pi/yourpath/snap.jpg")
+    await bot.upload("./snap.jpg")
 
 
 @bot.command()
 async def audio(seconds_rec: int=5):
-    """records ? seconds worth of audio from the pi's mic"""
+    """records 5 seconds worth of audio from the pi's mic"""
     await bot.say("Recording...")
     try:
        seconds_rec=int(seconds_rec)
     except ValueError:
        await bot.say("Ti si tup trqbva mi chislo")
-    bashCommand="arecord -f cd -D plughw:1,0 -d {} /home/pi/yourpath/play.wav".format(seconds_rec)
+    bashCommand="arecord -f cd -D plughw:1,0 -d {} ./play.wav".format(seconds_rec)
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1)
-    await bot.upload("/home/pi/yourpath/play.wav")
+    await bot.upload("./play.wav")
 
 # @bot.command()
 # async def hackme(command: str):
@@ -95,6 +95,8 @@ async def plug():
    await bot.say("The source code of this discord bot is located at https://github.com/yamozha/discordpibot")
    await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects")
 
+@bot.command()
+async def echo(usersaybot: str):
+   await bot.say(usersaybot)
 
 bot.run(TOKEN)
-
