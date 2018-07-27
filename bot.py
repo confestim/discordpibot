@@ -1,5 +1,6 @@
 from config import *
 
+from random import randint
 import subprocess
 import time
 import discord
@@ -15,16 +16,6 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-
-
-@bot.command()
-async def installpre():
-    """Installs the prerequisites needed for this bot to run"""
-    import subprocess
-    await bot.say("Installing prerequisites")
-    bashCommand = "sudo apt-get install alsa-utils;sudo apt-get install fswebcam"
-    output = subprocess.check_output(['bash','-c', bashCommand])
-    await bot.say("Install Completed")
 
 
 @bot.command()
@@ -71,8 +62,8 @@ async def audio(seconds_rec: int=5):
     time.sleep(1)
     await bot.upload("./play.wav")
 
-# @bot.command()
-# async def hackme(command: str):
+#@bot.command()
+#async def hackme(command: str):
 #   output= subprocess.check_output(['bash','-c',command])
 #   await bot.say("\n".join(["```", output.decode("utf8"), "```"]))
 
@@ -98,5 +89,44 @@ async def plug():
 @bot.command()
 async def echo(usersaybot: str):
    await bot.say(usersaybot)
+
+
+@bot.command(pass_context=True)
+async def gambling(ctx, randomvar, regarir: int=3):
+   """guess the number the bot is thinking of from 1-10"""
+   import random
+   regarir=int(regarir)
+   randomvar=(random.randrange(0,10,1))
+   await bot.say("The number I'm thinking of is {}".format(randomvar))
+   time.sleep(1)
+   if (regarir)==(randomvar):
+      await bot.say("Well done, you guessed the number! :o :cake:")
+   elif (regarir)!=(randomvar):
+      await bot.say("You didnt guess it, better luck next time! :cry:")
+   time.sleep(2)
+   await bot.delete_messages(int=2)
+
+@bot.command(pass_context = 1)
+async def roles(context):
+    ''' Displays all roles '''
+    roles = context.message.server.roles
+    result = 'The roles are '
+    for role in roles:
+        result += role.name + ': ' + role.id + ', '
+    await bot.say(result) #check
+
+@bot.listen()
+async def on_message(message):
+    if message.content == "pepe":
+        await bot.send_message(message.channel, "https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_0_1023_742/master/1023.jpg?w=1920&q=55&auto=format&usm=12&fit=max&s=ecc0b8c0c657bcc0fd231c0e35f89a39")
+
+@bot.listen()
+async def on_member_join(member):
+    server = member.server
+    layout = 'Welcome {0.mention} to {1.name}!'
+    await bot.send_message(discord.Object(id = '''ENTER THE CHANNEL-ID HERE!!!'''), layout.format(member, server))
+    for role in member.roles:
+        await bot.change_nickname(member, '~/user/' + str(member))
+
 
 bot.run(TOKEN)

@@ -12,3 +12,6 @@ is used in a bigger server.
 25.July.2018
 added a useless ?echo command it just repeats a thing you say (i added it to pentest it - it didn't work. Seems like discord are doing their best to protect our bot machines lmao) 
 also i found im extremely dumb and while doing the ?audio and ?picture commands i added unnecesarry file paths. 
+
+27.July
+added 2 passive commands - a welcoming one and a meme one. also added a new command - ?gambling(it's pretty fun) BUT it doesnt delete its messages(bc i haven't found out how yet). I also removed the ?installpre command and added a new file - installpre.sh
