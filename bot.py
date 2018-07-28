@@ -83,8 +83,11 @@ async def info(ctx, user: discord.Member):
 @bot.command()
 async def plug():
    """shameless"""
-   await bot.say("The source code of this discord bot is located at https://github.com/yamozha/discordpibot")
-   await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects")
+   plug1 = await bot.say("The source code of this discord bot is located at https://github.com/yamozha/discordpibot")
+   plug2 = await bot.say("Please follow me on twitter https://twitter.com/yamozhatcg for more of these projects")
+   time.sleep(6)
+   await bot.delete_messages((plug1,plug2))
+
 
 @bot.command()
 async def echo(usersaybot: str):
@@ -95,16 +98,16 @@ async def echo(usersaybot: str):
 async def gambling(ctx, randomvar, regarir: int=3):
    """guess the number the bot is thinking of from 1-10"""
    import random
-   regarir=int(regarir)
-   randomvar=(random.randrange(0,10,1))
-   await bot.say("The number I'm thinking of is {}".format(randomvar))
+   regarir = int(regarir)
+   randomvar = random.randrange(0,10,1)
+   msg1 = await bot.say("The number I'm thinking of is {}".format(randomvar))
    time.sleep(1)
-   if (regarir)==(randomvar):
-      await bot.say("Well done, you guessed the number! :o :cake:")
-   elif (regarir)!=(randomvar):
-      await bot.say("You didnt guess it, better luck next time! :cry:")
+   if regarir == randomvar:
+      msg2 = await bot.say("Well done, you guessed the number! :o :cake:")
+   else:
+      msg2 = await bot.say("You didnt guess it, better luck next time! :cry:")
    time.sleep(2)
-   await bot.delete_messages(int=2)
+   await bot.delete_messages((msg1,msg2))
 
 @bot.command(pass_context = 1)
 async def roles(context):
