@@ -51,7 +51,7 @@ async def picture():
 
 @bot.command()
 async def audio(seconds_rec: int=5):
-    """records 5 seconds worth of audio from the pi's mic"""
+    """records () seconds worth of audio from the pi's mic"""
     await bot.say("Recording...")
     try:
        seconds_rec=int(seconds_rec)
