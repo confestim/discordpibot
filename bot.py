@@ -43,9 +43,11 @@ async def status():
 @bot.command()
 async def picture():
     """Take a picture through rasbpi's camera"""
+    takingpic = await bot.say("Taking picture")
     bashCommand="fswebcam -r 640x480 --jpeg 85 -D 1 --save ./snap.jpg"
     output = subprocess.check_output(['bash','-c', bashCommand])
     time.sleep(1.5)
+    await bot.delete_message(takingpic)
     await bot.upload("./snap.jpg")
 
 
