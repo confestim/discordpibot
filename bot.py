@@ -26,8 +26,10 @@ async def yoot():
 @bot.command()
 async def add(left : int, right : int):
     """Adds two numbers together."""
-    if not left or not right:
-        await bot.say("give me two ints to add")
+    left=int(left)
+    right=int(right)
+    if ValueError:
+        await bot.say("u dumb give me 2 numbers like this 'num1 num2'")
     await bot.say(left + right)
 
 
@@ -129,9 +131,27 @@ async def on_message(message):
 async def on_member_join(member):
     server = member.server
     layout = 'Welcome {0.mention} to {1.name}!'
-    await bot.send_message(discord.Object(id = '''ENTER THE CHANNEL-ID HERE!!!'''), layout.format(member, server))
+    await bot.say(discord.Object(id = '''ENTER THE CHANNEL-ID HERE!!!'''), layout.format(member, server))
     for role in member.roles:
         await bot.change_nickname(member, '~/user/' + str(member))
+
+
+@bot.command()
+async def coins():
+    """gets the price of monero, bitcoin and dogecoin"""
+    import requests
+    bitcoin = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/").json()
+    monero = requests.get("https://api.coinmarketcap.com/v1/ticker/Monero/").json()
+    dogecoin = requests.get("https://api.coinmarketcap.com/v1/ticker/dogecoin/").json()
+    await bot.say('1 Bitcoin: {0:.2f}$'.format(float(bitcoin[0]["price_usd"])))
+    await bot.say('1 Monero {0:.2f}$'.format(float(monero[0]["price_usd"])))
+    await bot.say('1 DogeCoin: {0:.3f}$'.format(float(dogecoin[0]["price_usd"])))
+
+
+@bot.listen()
+async def on_message(message):
+   if message.content == "nice meme":
+       await bot.send_message(message.channel, "http://niceme.me/")
 
 
 bot.run(TOKEN)

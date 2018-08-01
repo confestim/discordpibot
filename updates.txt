@@ -21,3 +21,7 @@ the bot now deletes its messages after ?plug and ?gambling
 
 30.July
 I'd like to announce that discordpibot is now going to version 2.0 and I don't really intend to fuck with it any more unless i get a really good idea for a command. Updated the demo video.
+
+1. August
+SIKE, It fucking hit me what command I should do and i made ?coins, it lists the current prices of Bitcoin, Monero and of course DogeCoin. Yes i know im a genious haha.
+
