@@ -143,10 +143,7 @@ async def coins():
     bitcoin = requests.get("https://api.coinmarketcap.com/v1/ticker/bitcoin/").json()
     monero = requests.get("https://api.coinmarketcap.com/v1/ticker/Monero/").json()
     dogecoin = requests.get("https://api.coinmarketcap.com/v1/ticker/dogecoin/").json()
-    await bot.say('1 Bitcoin: {0:.2f}$'.format(float(bitcoin[0]["price_usd"])))
-    await bot.say('1 Monero {0:.2f}$'.format(float(monero[0]["price_usd"])))
-    await bot.say('1 DogeCoin: {0:.3f}$'.format(float(dogecoin[0]["price_usd"])))
-
+    await bot.say('BTC: ${:.2f}\nXMR: ${:.2f}\nDOGE: ${:.3f}'.format(float(bitcoin[0]["price_usd"]), float(monero[0]["price_usd"]), float(dogecoin[0]["price_usd"])))
 
 @bot.listen()
 async def on_message(message):
