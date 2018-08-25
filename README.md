@@ -7,6 +7,6 @@ To run this you need to add your bot token from [Discord Developer](https://disc
 
 To see what the commands do, see the bot.py file.
 
-[Demo Video.](https://www.youtube.com/watch?v=v4BB0B7mRx0&t)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v4BB0B7mRx0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 This is just a personal project of mine so don't think of it highly.
