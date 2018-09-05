@@ -10,13 +10,22 @@ from discord.ext import commands
 description = '''A bot ran on Raspberry Pi'''
 bot = commands.Bot(command_prefix='?', description=description)
 
+async def status_task():
+    while True:
+        await bot.change_presence(game=discord.Game(name="status1"), status=discord.Status("online,idle,dnd,invisible,offline"))
+        time.sleep(60)
+        await bot.change_presence(game=discord.Game(name="status2"))
+        time.sleep(60)
+        await bot.change_presence(game=discord.Game(name="status3"))
+
+
 @bot.event
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-
+    bot.loop.create_task(status_task())
 
 @bot.command()
 async def yoot():
