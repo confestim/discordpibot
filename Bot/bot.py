@@ -13,9 +13,9 @@ bot = commands.Bot(command_prefix='?', description=description)
 async def status_task():
     while True:
         await bot.change_presence(game=discord.Game(name="status1"), status=discord.Status("online,idle,dnd,invisible,offline"))
-        time.sleep(60)
+        await asyncio.sleep(60)
         await bot.change_presence(game=discord.Game(name="status2"))
-        time.sleep(60)
+        await asyncio.sleep(60)
         await bot.change_presence(game=discord.Game(name="status3"))
 
 
