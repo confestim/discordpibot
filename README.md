@@ -1,6 +1,6 @@
 # Discordpibot
 
-[![](https://img.shields.io/github/license/:yamozha/:discordpibot.svg?style=flat-square)](https://github.com/yamozha/discordpibot)
+[![](https://img.shields.io/github/license/yamozha/discordpibot.svg?style=flat-square)](https://github.com/yamozha/discordpibot)
 ![](https://img.shields.io/github/stars/yamozha/discordpibot.svg?style=flat-square)
 
 
