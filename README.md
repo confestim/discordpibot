@@ -1,5 +1,6 @@
 # Discordpibot
 
+![](https://img.shields.io/apm/l/:packageName.svg)
 
 A Discord bot that gives you the stuff you need to know for your Raspberry Pi 3 (and other stuff too).
 
