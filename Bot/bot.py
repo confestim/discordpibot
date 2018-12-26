@@ -12,11 +12,7 @@ bot = commands.Bot(command_prefix='?', description=description)
 
 async def status_task():
     while True:
-        await bot.change_presence(game=discord.Game(name="status1"), status=discord.Status("online,idle,dnd,invisible,offline"))
-        await asyncio.sleep(60)
-        await bot.change_presence(game=discord.Game(name="status2"))
-        await asyncio.sleep(60)
-        await bot.change_presence(game=discord.Game(name="status3"))
+        await bot.change_presence(game=discord.Game(name="?help"), status=discord.Status("dnd"))
 
 
 @bot.event
@@ -158,6 +154,14 @@ async def coins():
 async def on_message(message):
    if message.content == "nice meme":
        await bot.send_message(message.channel, "http://niceme.me/")
+
+
+@bot.command()
+async def iplookup(ip):
+    """Look up an ip address"""
+    bashCommand = "curl ipinfo.io/{}?token=5b9793245de1f8".format(ip)
+    output = subprocess.check_output(['bash','-c', bashCommand])
+    await bot.say("```{}```".format(output.decode("utf8")))
 
 
 bot.run(TOKEN)
