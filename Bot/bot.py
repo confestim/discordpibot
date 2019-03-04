@@ -164,4 +164,7 @@ async def iplookup(ip):
     await bot.say("```{}```".format(output.decode("utf8")))
 
 
-bot.run(TOKEN)
+try:
+    bot.run(TOKEN)
+except KeyboardInterrupt:
+    pass
